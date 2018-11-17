@@ -7,8 +7,8 @@ q = sym('q',[1,num_seg]); % theta
 qdot = sym('qdot',[1,num_seg]); % theta dot 
 x = sym('x',[1,num_seg]); % theta 
 y = sym('y',[1,num_seg]); % theta dot 
-x(1) = l(1)*cos(q(1))
-y(1) = l(1)*sin(q(1))
+x(1) = l(1)*cos(q(1));
+y(1) = l(1)*sin(q(1));
 
 for i = 2: num_seg
    
