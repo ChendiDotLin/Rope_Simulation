@@ -13,7 +13,7 @@ function confs = solveSystem(args, initConf, systemModelSolver)
         
         q = q + qdot .* dt + 0.5 .* qddot .* dt.^2
         qdot = qdot + qddot .* dt
-        qddot = systemModelSolver(q, qdot)
+        qddot = systemModelSolver(args, q, qdot)
         
         confs = [confs; [q, qdot, qddot]]
     end
