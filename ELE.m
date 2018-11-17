@@ -1,7 +1,7 @@
-function [S,qddot] = ELE (L,q,qdot)
-    dL_dq = Jacobian(L,q);
-    dL_dqdot =  Jacobian(L,qdot);
-    
+function [S, qddot] = ELE (L,q,qdot)
+    dL_dq = jacobian(L,q);
+    dL_dqdot =  jacobian(L,qdot);
+    syms t
     fq = sym('a',size(q));
     for i = 1:length(q)
         fq(i) = symfun(sprintf('fq%d(t)', i), t);

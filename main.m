@@ -1,5 +1,17 @@
-args.num_segs = 30
+clear all
+close all
 
-setup(args)
+args.num_segs = 15;
+args.damping_coeff = 0.2;
+args.g = 9.8;
+args.seg_length = ones(1, args.num_segs) * 1;
+args.timeStamp = 0:0.02:5;
 
-solveSystem(args, initConf, ropeModelSolver)
+
+initConf.q = ones(1, args.num_segs) * 0;
+initConf.qdot = ones(1, args.num_segs) * 0;
+
+[args.S, args.q_s, args.qdot_s, args.qddot_s] = setup(args);
+
+
+solveSystem(args, initConf, @ropeModelSolver);
