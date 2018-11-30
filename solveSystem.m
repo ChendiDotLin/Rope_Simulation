@@ -8,6 +8,7 @@ function confs = solveSystem(args, initConf, systemModelSolver)
     confs = [q, qdot, qddot];
     
     for idx = 2:t_len
+        fprintf("solving %d / %d frames \n", idx, t_len)
         time = timeStamp(idx);
         dt = timeStamp(idx) - timeStamp(idx - 1);
         

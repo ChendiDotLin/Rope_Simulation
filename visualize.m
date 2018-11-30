@@ -2,17 +2,16 @@ function[] = visualize(args, confs)
 figure()
 num_segs = args.num_segs;
 l = args.seg_length;
-q = confs(:,1:num_segs);
+q = confs;
 steps = size(q,1);
 for time = 1:steps
     x = zeros(1,num_segs);
     y = zeros(1,num_segs);
-    x(1) = l(1)*cos(q(time,1));
-    y(1) = l(1)*sin(q(time,1));
+    x(1) = q(time,num_segs+1)*cos(q(time,1));
+    y(1) = q(time,num_segs+1)*sin(q(time,1));
     for i = 2: num_segs
-        
-        x(i) = x(i-1) + l(i)*cos(q(time,i));
-        y(i) = y(i-1) + l(i)*sin(q(time,i));
+        x(i) = x(i-1) + q(time,num_segs+i)*cos(q(time,i));
+        y(i) = y(i-1) + q(time,num_segs+i)*sin(q(time,i));
     end
     x = [0,x];
     y = [0,y];
@@ -27,5 +26,5 @@ for time = 1:steps
     M(i) = getframe(gcf);
     
 end
-movie(M,1)
-VideoWriter(M,'rope_simulation.avi')
+% movie(M,1)
+% VideoWriter(M,'rope_simulation.avi')
