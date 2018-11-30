@@ -24,6 +24,8 @@ for time = 1:steps
     %     drawnow()
     %     hold on
     pause(0.1)
-    
+    M(i) = getframe(gcf);
     
 end
+movie(M,1)
+VideoWriter(M,'rope_simulation.avi')
