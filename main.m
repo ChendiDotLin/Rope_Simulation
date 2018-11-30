@@ -1,7 +1,9 @@
 clear all
 close all
 
+
 args.num_segs = 10;
+
 args.damping_coeff = 0.2;
 args.g = 9.8;
 args.seg_length = ones(1, args.num_segs) * 1;
