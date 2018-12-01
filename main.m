@@ -8,7 +8,7 @@ args.damping_coeff = 0.2;
 args.g = 9.8;
 args.seg_length = ones(1, args.num_segs) * 1;
 args.timeStamp = 0:0.02:5;
-
+args.m = 0.01;
 args.k_l = 0.01;
 
 
