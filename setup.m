@@ -19,14 +19,15 @@ function [S, q, qdot, qddot] = setup(params)
        y(i) = y(i-1) + q(num_seg + i)*sin(q(i));
     end
 
-    vx = jacobian(x,q) * qdot';
-    vy = jacobian(y,q) * qdot';
+    vx = jacobian(x,q) * qdot.';
+    vy = jacobian(y,q) * qdot.';
 
-    v = [vx;vy]';
-    T = 0.5 * v * v' * m;
+    v = [vx vy];
+    T = sum(0.5 * v .* v) * m;
     U = sum(g * y) * m + sum(0.5 * params.k_l * (q(num_seg+1: 2*num_seg)-l).^2);
 
     L = T - U;
     
-    [S, qddot] = ELE(L, q, qdot);
+ 
+[S, qddot] = ELE(L, q, qdot);
 end

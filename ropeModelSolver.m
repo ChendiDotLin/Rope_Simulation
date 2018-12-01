@@ -7,7 +7,7 @@ function qddot = ropeModelSolver(args, q, qdot)
 %     A = subs(A, [args.q_s; args.qdot_s], [q; qdot]);
 %     b = subs(b, [args.q_s; args.qdot_s], [q; qdot]);
 %     qddot = double(A\b)';
-    damping_coeff = [ones(1, args.num_segs) * args.damping_coeff, zeros(1, args.num_segs)];
+    damping_coeff = [ones(1, args.num_segs) * args.damping_coeff, ones(1, args.num_segs) * args.damping_coeff_spring];
     S = subs(S,[args.q_s; args.qdot_s], [q; qdot]);
     damping_coeff = subs(damping_coeff,[args.q_s; args.qdot_s], [q; qdot]);
 %     args.qddot_s
