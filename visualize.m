@@ -7,14 +7,14 @@ steps = size(q,1);
 for time = 1:steps
     x = zeros(1,num_segs);
     y = zeros(1,num_segs);
-    x(1) = q(time,num_segs+1)*cos(q(time,1));
-    y(1) = q(time,num_segs+1)*sin(q(time,1));
+    x(1) = q(time,num_segs+1)*cos(q(time,1))+q(time,num_segs*2+1);
+    y(1) = q(time,num_segs+1)*sin(q(time,1))+q(time,num_segs*2+2);
     for i = 2: num_segs
         x(i) = x(i-1) + q(time,num_segs+i)*cos(q(time,i));
         y(i) = y(i-1) + q(time,num_segs+i)*sin(q(time,i));
     end
-    x = [0,x];
-    y = [0,y];
+    x = [q(time,num_segs*2+1),x];
+    y = [q(time,num_segs*2+2),y];
     plot(x,y,'b','LineWidth',2);
     hold off
     xlim([-1*num_segs,1*num_segs]);

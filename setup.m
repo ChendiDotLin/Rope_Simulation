@@ -3,16 +3,24 @@ function [S, q, qdot, qddot] = setup(params)
     g = params.g;
     l = params.seg_length;
     m = params.m;
-    q = sym('q',[1,num_seg * 2]); % theta
-    qdot = sym('qdot',[1,num_seg * 2]); % theta dot 
+    q = sym('q',[1,num_seg * 2 + 2]); % theta
+    qdot = sym('qdot',[1,num_seg * 2 + 2]); % theta dot 
+    
     
 
-    
-    x = sym('x',[1,num_seg]); % theta 
-    y = sym('y',[1,num_seg]); % theta dot 
-    x(1) = q(num_seg + 1)*cos(q(1));
-    y(1) = q(num_seg + 1)*sin(q(1));
-
+    if ~params.fixed_endpoint
+        x = sym('x',[1,num_seg + 1]); % theta 
+        y = sym('y',[1,num_seg + 1]); % theta dot
+        x(end) = q(end - 1)
+        y(end) = q(end)
+        x(1) = q(num_seg + 1)*cos(q(1)) + x(end);
+        y(1) = q(num_seg + 1)*sin(q(1)) + y(end);
+    else
+        x = sym('x',[1,num_seg]); % theta 
+        y = sym('y',[1,num_seg]); % theta dot
+        x(1) = q(num_seg + 1)*cos(q(1)) + 0;
+        y(1) = q(num_seg + 1)*sin(q(1)) + 0;
+    end
     for i = 2: num_seg
 
        x(i) = x(i-1) + q(num_seg + i)*cos(q(i));

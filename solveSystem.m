@@ -15,7 +15,9 @@ function confs = solveSystem(args, initConf, systemModelSolver)
         q = q + qdot .* dt + 0.5 .* qddot .* dt.^2;
         qdot = qdot + qddot .* dt;
         qddot = systemModelSolver(args, q, qdot);
-        q(:,2:2)
+        
+        q(end)
+        
         confs = [confs; [q, qdot, qddot]];
     end
 end
