@@ -2,14 +2,15 @@ clear all
 close all
 
 
-args.num_segs = 10;
+args.num_segs = 3;
 
 args.damping_coeff = 0.2;
 args.g = 9.8;
 args.seg_length = ones(1, args.num_segs) * 1;
-args.timeStamp = 0:0.02:0.1;
+args.timeStamp = 0:0.02:5;
 
-args.k_l = 1;
+args.k_l = 0.01;
+
 
 
 initConf.q = [ones(1, args.num_segs) * 0, 1 * args.seg_length];
