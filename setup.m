@@ -22,11 +22,10 @@ function [S, q, qdot, qddot] = setup(params)
     vx = jacobian(x,q) * qdot.';
     vy = jacobian(y,q) * qdot.';
 
-    v = [vx vy];
-    T = sum(0.5 * v .* v) * m;
+    T = 0.5 * sum(vx.'.^2 + vy.'.^2) * m;
     U = sum(g * y) * m + sum(0.5 * params.k_l * (q(num_seg+1: 2*num_seg)-l).^2);
 
-    L = T - U;
+    L = (T - U) * 100;
     
  
 [S, qddot] = ELE(L, q, qdot);

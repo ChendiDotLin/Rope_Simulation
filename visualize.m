@@ -17,8 +17,8 @@ for time = 1:steps
     y = [0,y];
     plot(x,y,'b','LineWidth',2);
     hold off
-    xlim([-1,1]);
-    ylim([-2,0]);
+    xlim([-1*num_segs,1*num_segs]);
+    ylim([-2*num_segs,0]);
     %     hold on
     %     drawnow()
     %     hold on

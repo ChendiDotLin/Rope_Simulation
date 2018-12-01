@@ -13,6 +13,6 @@ function [S, qddot] = ELE (L,q,qdot)
     qddot = sym('qddot',size(q));
     
     S = subs(S,[fq;fqdot;fqddot],[q;qdot;qddot]);
-    
+    S = simplify(S);
     
 end
