@@ -9,11 +9,11 @@ function qddot = ropeModelSolver(args, q, qdot)
 %     qddot = double(A\b)';
     damping_coeff = [ones(1, args.num_segs) * args.damping_coeff, ones(1, args.num_segs) * args.damping_coeff_spring, 0, 0];
     S = subs(S,[args.q_s; args.qdot_s], [q; qdot]);
-    damping_coeff = subs(damping_coeff,[args.q_s; args.qdot_s], [q; qdot]);
+%     damping_coeff = subs(damping_coeff,[args.q_s; args.qdot_s], [q; qdot]);
 %     args.qddot_s
 %     qddot = zeros(1,args.num_segs);
 %     [q1,q2,q3,q4,q5,q6,q7,q8,q9,q10] = vpasolve(S == damping_coeff .* qdot, args.qddot_s);
-        soln = vpasolve(S == damping_coeff .* qdot, args.qddot_s);
+        soln = vpasolve(S == - damping_coeff .* qdot, args.qddot_s);
         qddot = double(vpa(struct2cell(soln)))';
 %         qddot = 
 %         qddot = [];

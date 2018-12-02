@@ -22,7 +22,7 @@ for time = 1:steps
     %     hold on
     %     drawnow()
     %     hold on
-    pause(0.01)
+%     pause(0.01)
     M(time) = getframe(gcf);
     
 end
