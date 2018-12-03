@@ -3,10 +3,11 @@ figure()
 num_segs = args.num_segs;
 l = args.seg_length;
 q = confs;
-steps = size(q,1);
-c = parula(steps/100);
-for t = 1:steps/100
-    time = 100*t;
+steps = floor(size(q,1));
+den = 10;
+c = flipud(parula(floor(steps/den)));
+for t = 1:steps/den
+    time = den*t;
     x = zeros(1,num_segs);
     y = zeros(1,num_segs);
     x(1) = q(time,num_segs+1)*cos(q(time,1))+q(time,num_segs*2+1);
